@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LedgerLine | Timekeeping for Client Matters</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="app">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">LedgerLine</p>
+          <h1>Timekeeping across client matters, without the spreadsheet.</h1>
+          <p class="subhead">
+            Track exact start/stop times, attribute every minute to the right matter, and see
+            instant progress toward monthly goals.
+          </p>
+        </div>
+        <div class="goal-card">
+          <div>
+            <h2>Monthly goal</h2>
+            <p class="goal-hours"><span id="goalHours">160</span> hrs</p>
+            <label class="goal-input">
+              <span>Update goal</span>
+              <input id="goalInput" type="number" min="1" step="1" value="160" />
+            </label>
+          </div>
+          <div class="goal-metrics">
+            <div>
+              <p class="metric-label">Logged this month</p>
+              <p class="metric-value" id="loggedHours">0.0 hrs</p>
+            </div>
+            <div>
+              <p class="metric-label">Remaining</p>
+              <p class="metric-value" id="remainingHours">160.0 hrs</p>
+            </div>
+            <div>
+              <p class="metric-label">Daily pace needed</p>
+              <p class="metric-value" id="dailyPace">0.0 hrs</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="content">
+        <section class="panel">
+          <div class="panel-header">
+            <div>
+              <h2>Daily ledger</h2>
+              <p>Each tab captures a single day of entries.</p>
+            </div>
+            <button id="addDay" class="primary">+ Add day</button>
+          </div>
+          <div id="dayTabs" class="tabs"></div>
+
+          <div class="day-grid">
+            <div class="entries" id="entriesContainer"></div>
+            <aside class="summary">
+              <h3>Today at a glance</h3>
+              <div class="summary-row">
+                <span>Total hours</span>
+                <strong id="dayTotal">0.0</strong>
+              </div>
+              <div class="summary-row">
+                <span>Active timers</span>
+                <strong id="activeTimers">0</strong>
+              </div>
+              <div class="summary-row">
+                <span>Billable matters</span>
+                <strong id="matterCount">0</strong>
+              </div>
+              <div class="summary-list" id="matterBreakdown"></div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="panel insights">
+          <div>
+            <h2>Insights</h2>
+            <p>Spot workload trends and see your busiest matters.</p>
+          </div>
+          <div class="insight-grid">
+            <div class="insight-card">
+              <h3>Top matters this month</h3>
+              <ol id="topMatters"></ol>
+            </div>
+            <div class="insight-card">
+              <h3>Weekly pacing</h3>
+              <p class="insight-highlight" id="weeklyPace">0.0 hrs</p>
+              <p class="insight-sub">Average hours per active week.</p>
+            </div>
+            <div class="insight-card">
+              <h3>Last entry</h3>
+              <p class="insight-highlight" id="lastEntry">No entries yet</p>
+              <p class="insight-sub">Quickly resume your latest matter.</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <template id="entryTemplate">
+      <div class="entry">
+        <div class="entry-main">
+          <input class="matter" type="text" placeholder="Client / Matter" />
+          <input class="detail" type="text" placeholder="Work detail" />
+        </div>
+        <div class="entry-times">
+          <div class="time-group">
+            <label>Start</label>
+            <input class="start" type="time" />
+          </div>
+          <div class="time-group">
+            <label>Stop</label>
+            <input class="end" type="time" />
+          </div>
+          <div class="time-group">
+            <label>Duration</label>
+            <p class="duration">0.0h</p>
+          </div>
+        </div>
+        <div class="entry-actions">
+          <button class="timer">Start</button>
+          <button class="remove">Remove</button>
+        </div>
+      </div>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
